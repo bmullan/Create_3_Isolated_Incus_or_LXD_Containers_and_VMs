@@ -1,55 +1,79 @@
-# Create Network Isolated LXD Containers/VMs for Testing purposes  
 
-Two Bash Scripts to *Create* (***isolate-on.sh***) &amp; and to *Cleanup* (***isolate-off.sh)***
-three separated LXD Network bridges (lxdbr1, lxdbr2, lxdbr3) and the attached but 
-Network Isolated (from each other) LXD containers (cn1, cn2, cn3) and LXD VMs (vm1, vm2, vm3).
+## Create or Delete 3 "Isolated" Sets of Incus/LXD Containers/VMs & respective Bridges  
 
-Why?  
-There are probably alot of examples but one might be that you may want to test something 
-like a VPN between servers on multiple Clouds but don't want to pay for multiple Cloud Server 
-Instances.   You could use these scripts to simulate isolated Cloud servers.
-  
-*Here are 2 simple Bash scripts.*  
-  
-> **isolate-on.sh**  
-> **isolate-off.sh**
+Two Bash Scripts to *Create* (**isolate-on\.sh**) and/or *Cleanup* (**isolate-off\.sh)**
+three isolated Incus or LXD Network bridges and their respective Incus/LXD Network Isolated
+Incus/LXD Containers and VM
+
+Three pairs of"isolated" Container/VM are used CN1/VM1, CN2/VM2 and CN3/VM3)
+
+***Sample use-case:***
+There are probably a lot of examples but one might be that you may want to test something
+like a VPN between servers on multiple Clouds but don't want to pay for multiple Cloud Servers Instances.
+ You could use these scripts to simulate isolated Cloud servers.
+
+*Here are 2 simple Bash scripts.*
+
+> **isolate-on\.sh**   
+> **isolate-off\.sh**
+
+---
+
+### isolate-on\.sh
+
+***Purpose:***
+- Create 3 new Incus/LXD Bridges (incusbr1/lxdbr1, incusbr2/lxdbr2, incusbr3/lxdbr3)
+- Create 3 sets of "Isolated" (from each other)  Incus/LXD  Containers and VMs, each attached to a corresponding Bridge
+
+***Assignments are***
+
+| Container/VM     | Bridge   |
+| :--------------- | --------:|
+| incus-cn1        | incusbr1 |
+| incus-cn2        | incusbr2 |
+| incus-cn3        | incusbr3 |
+| incus-vm1       | incusbr1 |
+| incus-vm2       | incusbr2 |
+| incus-vm3       | incusbr3 |
+
+**and/or**
+
+| Container/VM   | Bridge |
+| :------------- | ------:|
+| lxd-cn1        | lxdbr1 |
+| lxd-cn2        | lxdbr2 |
+| lxd-cn3        | lxdbr3 |
+| lxd-vm1        | lxdbr1 |
+| lxd-vm2        | lxdbr2 |
+| lxd-vm3        | lxdbr3 |
+
+After executing ***isolate-on\.sh*** each of those 3 Incus or LXD Containers/VM will be network isolated from each other
+but not from the Host, the Internet or their "counterpart".
+
+### Example:   
+
+CN1 and VM1 will get IPv4 addresses on the same subnet so they can communicate with the Internet/Host
+and each other.
+
+The same happens for CN2/VM2 and CN3/VM3.
+
+But
+CN1 CN2 and CN3 can't talk to each other
+and
+VM1 VM2 and VM3 can't talk to each other
 
 ---
 
-### isolate-on.sh
-  
-***Purpose:***   
-* Create 3 new LXD Bridges (lxdbr1, lxdbr2, lxdbr3)
-* Create 3 new LXD Containers and 3  LXD VMs, each attached to a corresponding LXD Bridge
+### isolate-off\.sh  
 
-***Assignments are***  
+***Purpose:***
+* Delete the 3 isolated Incus/LXD Containers and VMs
+* Delete the Incus/LXD Network Bridges
 
-| LXD Container/VM | Bridge |
-| :--------------- | ------:|
-| cn1              | lxdbr1 |
-| cn2              | lxdbr2 |
-| cn3              | lxdbr3 |
-| vm1              | lxdbr1 |
-| vm2              | lxdbr2 |
-| vm3              | lxdbr3 |
+After executing ***isolate-off\.sh*** Incus/LXD will clean-up/remove the respective Containers and VMs and
+remove the Incus/LXD Network Bridges
 
-After executing ***isolate-on.sh*** each of those 3 LXD Containers/VM will be network isolated from each other  
-but not from their Host, the Internet or their "counterpart".
 
-Example:   
-CN1 and VM1 will get IPv4 addresses on the same subnet so they can communicate with the internet/Host
-and each other.   The same happens for CN2/VM2 and CN3/VM3.
-
----
-  
-### isolate-off.sh  
-  
-***Purpose:*** 
-* Delete the 3 isolated LXD lxd Containers (cn1, cn2, cn3 and vm1, vm2, vm3)
-* Delete the LXD Network Bridges (lxdbr1, lxdbr2, lxdbr3)  
-  
-After executing ***isolate-off.sh*** LXD will clean/remove the LXD Containers (cn1, cn2, cn3), the LXD VMs
-(vm1, vm2, vm3) and remove the LXD Network Bridges (lxdbr1, lxdbr2, lxdbr3)  
 
 
 
