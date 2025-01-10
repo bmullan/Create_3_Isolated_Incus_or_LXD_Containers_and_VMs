@@ -12,6 +12,11 @@ There are probably a lot of examples but one might be that you may want to test 
 like a VPN between servers on multiple Clouds but don't want to pay for multiple Cloud Servers Instances.
  You could use these scripts to simulate isolated Cloud servers.
 
+ ***Sample use-case:***
+ Implement a Mult-Tenant architectue where each "Tenant" is allocated separate isolated Incus/LXD Bridges and
+ the Containers/VMs created behind them and each Tenant is prevented from accessing another Tenant's Container
+ or VM "services.
+
 *Here are 2 simple Bash scripts.*
 
 > **isolate-on\.sh**   
