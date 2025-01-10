@@ -1,5 +1,5 @@
 
-## Create or Delete 3 "Isolated" Sets of Incus/LXD Containers/VMs & respective Bridges  
+## Create or Delete "Isolated" Sets of Incus/LXD Containers/VMs & respective Bridges  
 
 Two Bash Scripts to *Create* (**isolate-on\.sh**) and/or *Cleanup* (**isolate-off\.sh)**
 three isolated Incus or LXD Network bridges and their respective Incus/LXD Network Isolated
@@ -17,7 +17,7 @@ like a VPN between servers on multiple Clouds but don't want to pay for multiple
  the Containers/VMs created behind them and each Tenant is prevented from accessing another Tenant's Container
  or VM "services.
 
-*Here are 2 simple Bash scripts.*
+*Here are 2 simple Bash scripts creating 3 Incus/LXD bridges, Containers and VMs.*
 
 > **isolate-on\.sh**   
 > **isolate-off\.sh**
